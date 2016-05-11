@@ -4,7 +4,7 @@
 #include <limits.h>
 
 int main( int argc, char ** args ) {
-	int len, i, max;
+	int len, i, max, min;
 
 	char * line1, * line2, * line3, * line4;
 	size_t buffer = 250;
@@ -31,12 +31,15 @@ int main( int argc, char ** args ) {
 		hist[len]++;
 	}
 
+	for(i = 0; hist[i] == 0; i++);
+	min = i + 1;
+
 	max = 0;
 	for(i = 0; i < buffer; i++) {
 		if(hist[i] > 0) max = i;
 	}
 
-	for(i = 0; i < max + 1; i++) {
+	for(i = min; i < max + 1; i++) {
 		printf("%d\t%d\n", i, hist[i]);
 	}
 
